@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+.env.local/
+
+# Kaggle
+.ipynb_checkpoints/
+*.ipynb~ 
+
+# Logs & outputs
+logs/
+*.log
+*.out
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.onnx
+
+# Dataset (KHÔNG đẩy data)
+data/*
+!data/README.md
+
+# Experiment artifacts
+runs/
+wandb/
+mlruns/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+*.tmp
