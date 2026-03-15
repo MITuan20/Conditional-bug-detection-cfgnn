@@ -30,7 +30,7 @@ The objective of this week was to reproduce the original CFGNN model proposed by
 
 ---
 
-### 3. Experimental Environment
+### 3. Experimental Setup
 
 * Platform: Kaggle
 * GPU: Tesla T4
