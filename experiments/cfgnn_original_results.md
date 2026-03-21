@@ -13,10 +13,15 @@ due to hardware limitations.
 
 | Metric    | Value |
 |-----------|--------|
-| Accuracy  | 0.8346 |
-| Precision | 0.3677 |
-| Recall    | 0.2658 |
-| F1-score  | 0.3085 |
+| Accuracy  | 0.8410 |
+| Precision | 0.3876 |
+| Recall    | 0.2504 |
+| F1-score  | 0.3043 |
+
+## Confusion matrix
+
+[[22705  1547]
+ [ 2930   979]]
 
 ## Notes
 These results represent the performance of the original CFGNN model
