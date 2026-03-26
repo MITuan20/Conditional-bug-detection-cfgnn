@@ -107,3 +107,50 @@ without relying on external graph libraries such as PyTorch Geometric.
 | F1-score  | 0.3459 |
 
 ---------
+
+# Experiment 4 — CFGNN + PyTorch Geometric GAT
+
+## Description
+This experiment replaces the manual graph propagation implementation with
+a Graph Attention Network layer provided by PyTorch Geometric.
+
+Instead of iterating through CFG edges using Python loops, this version
+uses the `GATConv` layer from PyTorch Geometric to perform attention-based
+message passing more efficiently.
+
+Main changes:
+- Introduced the PyTorch Geometric library.
+- Implemented a new `CFGPropagationPyG` module using `GATConv`.
+- Converted CFG graphs in a batch into a flattened node representation.
+- Constructed a unified `edge_index` representation for all graphs in the batch.
+- Residual connections are used to stabilize training.
+
+Propagation process:
+
+1. Nodes from all graphs in the batch are flattened into a single tensor:
+
+   x ∈ R^(B*N × D)
+
+   where B is the batch size and N is the maximum number of nodes.
+
+2. CFG edges from each sample are merged into a single sparse edge list
+   with index offsets applied to maintain graph structure.
+
+3. Message passing is performed using the `GATConv` layer.
+
+4. Residual connections are applied to combine propagated features with
+   the original node embeddings.
+
+This version improves computational efficiency and aligns the implementation
+with standard graph neural network frameworks.
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.7834 |
+| Precision | 0.3034 |
+| Recall    | 0.4326 |
+| F1-score  | 0.3566 |
+
+----------
