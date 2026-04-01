@@ -154,3 +154,64 @@ with standard graph neural network frameworks.
 | F1-score  | 0.3566 |
 
 ----------
+
+---
+
+# Experiment 5 — CFGNN + PyTorch Geometric GAT + Focal Loss
+
+## Description
+This experiment focuses on improving the model's performance on the
+imbalanced dataset by replacing the standard cross-entropy loss with
+**Focal Loss**.
+
+The dataset used in this project is highly imbalanced, where the number
+of normal samples is significantly larger than the number of bug samples.
+In such cases, standard cross-entropy loss often causes the model to bias
+toward the majority class.
+
+To address this issue, **Focal Loss** was introduced to emphasize
+difficult and misclassified samples during training.
+
+Main changes:
+- Implemented a custom `FocalLoss` module.
+- Replaced the standard `CrossEntropyLoss` with `FocalLoss`.
+- Applied class balancing using parameter `alpha`.
+- Used focusing parameter `gamma` to concentrate learning on difficult samples.
+
+Loss configuration used in this experiment:
+
+   criterion = FocalLoss(alpha=0.4, gamma=2.0).to(device)
+
+
+### Focal Loss Mechanism
+
+Focal Loss modifies the standard cross-entropy loss by introducing a
+modulating factor that reduces the contribution of easy samples and
+focuses training on hard examples.
+
+The loss function is defined as:
+
+   FL(p_t) = alpha * (1 - p_t)^gamma * CE
+
+Where:
+
+- `p_t` is the predicted probability of the true class
+- `alpha` balances the importance of the minority class
+- `gamma` controls how strongly the model focuses on misclassified samples
+
+In this experiment:
+
+- `alpha = 0.4`
+- `gamma = 2.0`
+
+These settings were chosen to help the model pay more attention to
+difficult bug samples while reducing the dominance of the majority class.
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.8519 |
+| Precision | 0.4373 |
+| Recall    | 0.2336 |
+| F1-score  | 0.3045 |
