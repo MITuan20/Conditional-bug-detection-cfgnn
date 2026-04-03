@@ -155,8 +155,6 @@ with standard graph neural network frameworks.
 
 ----------
 
----
-
 # Experiment 5 — CFGNN + PyTorch Geometric GAT + Focal Loss
 
 ## Description
@@ -215,3 +213,76 @@ difficult bug samples while reducing the dominance of the majority class.
 | Precision | 0.4373 |
 | Recall    | 0.2336 |
 | F1-score  | 0.3045 |
+
+------
+
+# Experiment 6 — CFGNN + Node Role Embedding
+
+## Description
+This experiment focuses on improving node representation by introducing
+a more fine-grained **node role annotation** during the preprocessing stage.
+
+In previous versions, nodes were annotated using a simple binary
+indicator that only detected whether the node contained an API call.
+This representation was limited and could not distinguish between
+different types of control flow statements.
+
+To address this limitation, the preprocessing pipeline was modified to
+assign **semantic roles** to each node based on the type of statement
+appearing in the source code.
+
+These roles provide additional structural information that may help the
+model better understand the behavior of nodes within the control flow graph.
+
+Main changes:
+- Replaced the previous binary annotation with **multi-class node roles**.
+- Introduced **six semantic node categories** based on code structure.
+- Modified the model to support multi-type node embeddings.
+- Updated the node type embedding layer from:
+
+   self.type_emb = nn.Embedding(2, D)
+
+to
+
+   self.type_emb = nn.Embedding(7, D)
+
+This change allows the model to learn richer representations for
+different types of CFG nodes.
+
+### Node Role Categories
+
+Each node in the CFG is assigned one of the following roles:
+
+| Role ID | Description |
+|--------|-------------|
+| 1 | BEGIN / EXIT node |
+| 2 | Conditional statements (`if`, `else`, `switch`, `case`) |
+| 3 | Loop statements (`for`, `while`, `do`) |
+| 4 | Control transfer statements (`return`, `throw`, `break`, `continue`) |
+| 5 | API or method call |
+| 6 | Normal statements (assignments or declarations) |
+
+These role labels are generated during preprocessing and provided to the
+model as additional node features.
+
+### Reasons
+
+By distinguishing between different types of code statements, the model
+can better capture the structural semantics of the control flow graph.
+For example:
+
+- Conditional nodes often determine different execution paths.
+- Loop nodes indicate repeated execution.
+- Control transfer statements may terminate or redirect execution flow.
+
+Providing explicit role information may help the model learn more
+meaningful representations of program structure.
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.859  |
+| Precision | 0.4793 |
+| Recall    | 0.1870 |
+| F1-score  | 0.2690 |
