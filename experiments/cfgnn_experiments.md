@@ -286,3 +286,51 @@ meaningful representations of program structure.
 | Precision | 0.4793 |
 | Recall    | 0.1870 |
 | F1-score  | 0.2690 |
+
+---
+
+# Experiment 7 — CFGNN + Tuned Focal Loss + Dynamic Threshold
+
+## Description
+This experiment improves performance on the imbalanced dataset by
+adjusting the **Focal Loss parameters** and introducing **dynamic
+threshold selection** during evaluation.
+
+Instead of using a fixed prediction threshold (0.5), the optimal
+threshold is selected from the **precision–recall curve** based on
+the maximum F1-score.
+
+Main changes:
+- Updated Focal Loss parameters.
+- Added dynamic threshold selection during validation.
+- Selected the threshold that maximizes the validation F1-score.
+
+Loss configuration:
+
+   criterion = FocalLoss(alpha=0.6, gamma=2.0)
+
+
+### Threshold Optimization
+
+The optimal threshold is determined using the precision–recall curve:
+
+   precisions, recalls, thresholds = precision_recall_curve(labels, probs)
+   f1_scores = 2 * (precisions * recalls) / (precisions + recalls + 1e-8)
+   best_idx = np.argmax(f1_scores)
+   best_threshold = thresholds[best_idx]
+
+
+Final predictions are generated using:
+
+   final_preds = (probs >= best_threshold)
+
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.8050 |
+| Precision | 0.3059 |
+| Recall    | 0.319  |
+| F1-score  | 0.3123 |
+| Threshold | 0.3847 |
