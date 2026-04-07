@@ -334,3 +334,42 @@ Final predictions are generated using:
 | Recall    | 0.319  |
 | F1-score  | 0.3123 |
 | Threshold | 0.3847 |
+
+---
+
+# Experiment 8 — CFGNN + Dropout Regularization
+
+## Description
+
+This experiment introduces **Dropout (p = 0.3)** to improve model
+generalization and reduce overfitting.
+
+Main changes:
+
+- Added Dropout after **node embedding**, **CFG propagation**, and **BiLSTM**.
+- Replaced **Focal Loss** with **weighted CrossEntropyLoss**.
+- Removed dynamic threshold selection.
+- Added **weight decay (1e-5)** in the optimizer.
+
+## Training Setup
+
+Loss:
+
+   criterion = nn.CrossEntropyLoss(
+   weight=torch.tensor([1.0, 7.0]).to(device)
+   )
+
+
+Optimizer:
+   
+   optimizer = Adam(..., weight_decay=1e-5)
+
+
+## Results
+
+| Metric    | Value |
+|-----------|-------|
+| Accuracy  | 0.7405 |
+| Precision | 0.2692 |
+| Recall    | 0.507  |
+| F1-score  | 0.3517 |
