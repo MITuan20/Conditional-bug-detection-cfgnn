@@ -373,3 +373,55 @@ Optimizer:
 | Precision | 0.2692 |
 | Recall    | 0.507  |
 | F1-score  | 0.3517 |
+
+---
+
+# Experiment 9 — CFGNN + Weight Decay & Class Weight Tuning
+
+## Description
+
+This experiment focuses on improving performance on the imbalanced dataset
+by tuning **weight decay** and **class weights** in the loss function.
+
+Instead of changing the model architecture, this version explores how
+regularization and class balancing affect the trade-off between
+precision and recall.
+
+Main changes:
+
+- Tuned **weight decay** in the optimizer.
+- Adjusted **class weights** in `CrossEntropyLoss`.
+
+---
+
+## Configurations
+
+### Setting 1
+
+   weight_decay = 1e-4
+   weight = [1.0, 5.0]
+
+## Results
+
+| Metric    | Value |
+|-----------|-------|
+| Accuracy  | 0.7995 |
+| Precision | 0.2998 |
+| Recall    | 0.3326 |
+| F1-score  | 0.3153 |
+
+---
+
+### Setting 2
+
+   weight_decay = 1e-5
+   weight = [1.0, 6.0]
+
+## Results
+
+| Metric    | Value |
+|-----------|-------|
+| Accuracy  | 0.7617 |
+| Precision | 0.2849 |
+| Recall    | 0.4745 |
+| F1-score  | 0.356  |
