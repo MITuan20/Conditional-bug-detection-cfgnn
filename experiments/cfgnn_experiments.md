@@ -425,3 +425,51 @@ Main changes:
 | Precision | 0.2849 |
 | Recall    | 0.4745 |
 | F1-score  | 0.356  |
+
+---
+
+# Experiment 10 — CFGNN + Binary Node Annotation (Revisited)
+
+## Description
+
+This experiment revisits the **binary node annotation strategy**
+while keeping all optimized training settings from previous experiments
+(e.g., dropout, weight decay, class weights).
+
+Instead of using multi-class node roles, node types are simplified
+to a binary indicator based on API calls.
+
+Main changes:
+
+- Replaced **node role embedding** with **binary annotation**:
+  - `1`: node contains API/method call
+  - `0`: otherwise
+- Updated model embedding layer:
+
+   self.type_emb = nn.Embedding(2, D)
+
+
+- Kept all other configurations unchanged:
+  - Dropout
+  - Weight decay
+  - Class weights
+
+Annotation rule:
+
+   annotation = 1 if re.findall(r'.\s*\w+\s*(', node_text) else 0
+
+
+## Motivation
+
+This experiment evaluates whether a **simpler node feature**
+can achieve competitive performance compared to the more complex
+multi-class node role embeddings.
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.7872 |
+| Precision | 0.3054 |
+| Recall    | 0.418  |
+| F1-score  | 0.3529 |
