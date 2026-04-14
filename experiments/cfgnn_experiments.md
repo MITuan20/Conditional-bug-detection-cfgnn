@@ -473,3 +473,42 @@ multi-class node role embeddings.
 | Precision | 0.3054 |
 | Recall    | 0.418  |
 | F1-score  | 0.3529 |
+
+---
+
+# Experiment 11 — CFGNN + GNN Backbone Comparison
+
+## Description
+
+This experiment compares different **graph neural network backbones**
+for CFG propagation within the CFGNN framework.
+
+Instead of using a single propagation method, three variants were tested:
+
+- **GraphSAGE**
+- **GCN**
+- **TransformerConv**
+
+All other components and training settings were kept unchanged to ensure
+a fair comparison.
+
+---
+
+## Configurations
+
+The following GNN layers were used:
+
+- SAGE: `SAGEConv`
+- GCN: `GCNConv`
+- Transformer: `TransformerConv`
+
+---
+
+## Results
+
+| Model        | Accuracy | Precision | Recall | F1-score |
+|--------------|----------|-----------|--------|----------|
+| GraphSAGE    | 0.7903   | 0.3072    | 0.407  | 0.3501   |
+| GCN          | 0.7875   | 0.2922    | 0.3732 | 0.3278   |
+| Transformer  | 0.781    | 0.3009    | 0.4362 | 0.3561   |
+
