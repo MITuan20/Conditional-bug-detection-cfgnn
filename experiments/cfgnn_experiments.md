@@ -512,3 +512,60 @@ The following GNN layers were used:
 | GCN          | 0.7875   | 0.2922    | 0.3732 | 0.3278   |
 | Transformer  | 0.781    | 0.3009    | 0.4362 | 0.3561   |
 
+---
+
+# Experiment 12 — CFGNN + BPE-based Node Tokenization
+
+## Description
+
+This experiment improves node text representation by replacing the
+manually constructed vocabulary with a **Byte Pair Encoding (BPE) tokenizer**.
+
+Instead of mapping tokens using a fixed vocabulary, node text is
+converted into **subword token IDs**, allowing the model to better
+capture semantic patterns in source code.
+
+Main changes:
+
+- Trained a **BPE tokenizer** on node text from the training dataset.
+- Replaced manual token-to-id mapping with **subword tokenization**.
+- Limited each node to a maximum of **20 subword tokens**.
+- Kept the existing **node role labels (6 classes)** unchanged.
+
+---
+
+## Tokenization Process
+
+- Tokenizer: BPE (Byte Pair Encoding)
+- Vocab size: 50,000
+- Pre-tokenization: whitespace-based splitting
+
+Each node is processed as follows:
+
+1. Encode node text into subword tokens.
+2. Convert tokens to IDs.
+3. Truncate to maximum length (20 tokens per node).
+
+---
+
+## Motivation
+
+The manually built vocabulary may not effectively capture the semantics
+of source code, especially for rare or unseen tokens.
+
+Using BPE helps:
+
+- Handle **out-of-vocabulary tokens**
+- Capture **subword-level patterns**
+- Improve representation of code structure
+
+---
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.7346 |
+| Precision | 0.2829 |
+| Recall    | 0.5943 |
+| F1-score  | 0.3833 |
