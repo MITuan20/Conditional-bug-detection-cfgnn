@@ -569,3 +569,34 @@ Using BPE helps:
 | Precision | 0.2829 |
 | Recall    | 0.5943 |
 | F1-score  | 0.3833 |
+
+---
+
+# Experiment 13 — CFGNN + BPE + GNN Backbone Comparison
+
+## Description
+
+This experiment extends previous backbone comparison by applying
+**BPE-based node tokenization** to evaluate how different GNN models
+perform with improved input representations.
+
+## Configurations
+
+The following GNN layers were used:
+
+SAGE: SAGEConv
+GCN: GCNConv
+Transformer: TransformerConv
+
+All training settings were kept unchanged to ensure fair comparison.
+
+---
+
+## Results
+
+| Model        | Accuracy | Precision | Recall | F1-score |
+|--------------|----------|-----------|--------|----------|
+| Transformer  | 0.7630   | 0.3037    | 0.5472 | 0.3906   |
+| GraphSAGE    | 0.7460   | 0.2887    | 0.5669 | 0.3825   |
+| GCN          | 0.7828   | 0.3087    | 0.4559 | 0.3681   |
+
