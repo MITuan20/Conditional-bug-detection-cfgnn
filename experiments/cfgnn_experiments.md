@@ -600,3 +600,36 @@ All training settings were kept unchanged to ensure fair comparison.
 | GraphSAGE    | 0.7460   | 0.2887    | 0.5669 | 0.3825   |
 | GCN          | 0.7828   | 0.3087    | 0.4559 | 0.3681   |
 
+---
+
+# Experiment 14 — CFGNN + Max Node Sensitivity Analysis
+
+## Description
+
+This experiment investigates the impact of different `max_node`
+configurations on CFGNN performance.
+
+The `max_node` parameter controls the maximum number of CFG nodes
+kept for each sample during preprocessing.
+
+All other training settings and model configurations were kept unchanged.
+
+Tested configurations:
+
+- `max_node = 150`
+- `max_node = 200`
+- `max_node = 250`
+- `max_node = 350`
+- `max_node = 400`
+
+---
+
+## Results
+
+| max_node | Accuracy | Precision | Recall | F1-score |
+|----------|----------|-----------|--------|----------|
+| 150      | 0.7401   | 0.2862    | 0.5840 | 0.3842   |
+| 200      | 0.7351   | 0.2818    | 0.5866 | 0.3807   |
+| 250      | 0.7380   | 0.2818    | 0.5730 | 0.3778   |
+| 350      | 0.7710   | 0.3087    | 0.5239 | 0.3885   |
+| 400      | 0.7625   | 0.3035    | 0.5490 | 0.3909   |
