@@ -633,3 +633,37 @@ Tested configurations:
 | 250      | 0.7380   | 0.2818    | 0.5730 | 0.3778   |
 | 350      | 0.7710   | 0.3087    | 0.5239 | 0.3885   |
 | 400      | 0.7625   | 0.3035    | 0.5490 | 0.3909   |
+
+---
+
+# Experiment 15 — CFGNN + GAT Heads Sensitivity Analysis
+
+## Description
+
+This experiment investigates the impact of different numbers of
+attention heads in the GAT-based CFG propagation module.
+
+The number of attention heads controls how many independent attention
+mechanisms are used during graph message passing.
+
+All other model configurations and training settings were kept unchanged.
+
+Tested configurations:
+
+- `heads = 2`
+- `heads = 4` 
+- `heads = 8`
+- `heads = 16`
+- `heads = 32`
+
+---
+
+## Results
+
+| Heads | Accuracy | Precision | Recall | F1-score |
+|-------|----------|-----------|--------|----------|
+| 2     | 0.6908   | 0.2604    | 0.6672 | 0.3746   |
+| 4     | 0.7346   | 0.2829    | 0.5943 | 0.3833   |
+| 8     | 0.7218   | 0.2690    | 0.5845 | 0.3684   |
+| 16    | 0.7775   | 0.3121    | 0.5006 | 0.3845   |
+| 32    | 0.7829   | 0.3157    | 0.4832 | 0.3819   |
