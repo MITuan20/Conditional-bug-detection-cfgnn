@@ -667,3 +667,36 @@ Tested configurations:
 | 8     | 0.7218   | 0.2690    | 0.5845 | 0.3684   |
 | 16    | 0.7775   | 0.3121    | 0.5006 | 0.3845   |
 | 32    | 0.7829   | 0.3157    | 0.4832 | 0.3819   |
+
+---
+
+# Experiment 16 — CFGNN without BiLSTM
+
+## Description
+
+This experiment investigates the contribution of the **BiLSTM layer**
+in the CFGNN architecture.
+
+Instead of modeling sequential dependencies between CFG nodes using
+BiLSTM, this version directly uses the output of the GAT-based CFG
+propagation module for attention pooling and classification.
+
+Main changes:
+
+- Removed the **BiLSTM** layer from the model.
+- Kept:
+  - BPE-based node representation
+  - Node role embeddings
+  - GAT-based CFG propagation
+  - Attention pooling
+
+---
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.7241 |
+| Precision | 0.2694 |
+| Recall    | 0.5771 |
+| F1-score  | 0.3673 |
