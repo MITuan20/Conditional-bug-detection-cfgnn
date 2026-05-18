@@ -1,6 +1,6 @@
-# CFGNN Experiments
+# CFGNN-Attn Experiments
 
-This file records all experiments conducted for improving the CFGNN model
+This file records all experiments conducted for improving the CFGNN-Attn model
 for conditional bug detection.
 
 Dataset used in these experiments:
@@ -15,10 +15,10 @@ Evaluation metrics:
 
 ---
 
-# Experiment 1 — CFGNN
+# Experiment 1 — CFGNN-Attn
 
 ## Description
-First implementation of CFGNN.
+First implementation of CFGNN-Attn.
 
 ## Results
 
@@ -31,7 +31,7 @@ First implementation of CFGNN.
 
 ---
 
-# Experiment 2 — CFGNN + Custom CFG Propagation
+# Experiment 2 — CFGNN-Attn + Custom CFG Propagation
 
 ## Description
 This experiment introduces a custom CFG propagation module to improve
@@ -65,7 +65,7 @@ without external graph libraries.
 
 ---
 
-# Experiment 3 — CFGNN + Graph Attention Propagation
+# Experiment 3 — CFGNN-Attn + Graph Attention Propagation
 
 ## Description
 This experiment extends the CFG propagation mechanism by introducing an
@@ -108,7 +108,7 @@ without relying on external graph libraries such as PyTorch Geometric.
 
 ---------
 
-# Experiment 4 — CFGNN + PyTorch Geometric GAT
+# Experiment 4 — CFGNN-Attn + PyTorch Geometric GAT
 
 ## Description
 This experiment replaces the manual graph propagation implementation with
@@ -155,7 +155,7 @@ with standard graph neural network frameworks.
 
 ----------
 
-# Experiment 5 — CFGNN + PyTorch Geometric GAT + Focal Loss
+# Experiment 5 — CFGNN-Attn + PyTorch Geometric GAT + Focal Loss
 
 ## Description
 This experiment focuses on improving the model's performance on the
@@ -216,7 +216,7 @@ difficult bug samples while reducing the dominance of the majority class.
 
 ------
 
-# Experiment 6 — CFGNN + Node Role Embedding
+# Experiment 6 — CFGNN-Attn + Node Role Embedding
 
 ## Description
 This experiment focuses on improving node representation by introducing
@@ -289,7 +289,7 @@ meaningful representations of program structure.
 
 ---
 
-# Experiment 7 — CFGNN + Tuned Focal Loss + Dynamic Threshold
+# Experiment 7 — CFGNN-Attn + Tuned Focal Loss + Dynamic Threshold
 
 ## Description
 This experiment improves performance on the imbalanced dataset by
@@ -337,7 +337,7 @@ Final predictions are generated using:
 
 ---
 
-# Experiment 8 — CFGNN + Dropout Regularization
+# Experiment 8 — CFGNN-Attn + Dropout Regularization
 
 ## Description
 
@@ -376,7 +376,7 @@ Optimizer:
 
 ---
 
-# Experiment 9 — CFGNN + Weight Decay & Class Weight Tuning
+# Experiment 9 — CFGNN-Attn + Weight Decay & Class Weight Tuning
 
 ## Description
 
@@ -428,7 +428,7 @@ Main changes:
 
 ---
 
-# Experiment 10 — CFGNN + Binary Node Annotation (Revisited)
+# Experiment 10 — CFGNN-Attn + Binary Node Annotation (Revisited)
 
 ## Description
 
@@ -476,12 +476,12 @@ multi-class node role embeddings.
 
 ---
 
-# Experiment 11 — CFGNN + GNN Backbone Comparison
+# Experiment 11 — CFGNN-Attn + GNN Backbone Comparison
 
 ## Description
 
 This experiment compares different **graph neural network backbones**
-for CFG propagation within the CFGNN framework.
+for CFG propagation within the CFGNN-Attn framework.
 
 Instead of using a single propagation method, three variants were tested:
 
@@ -514,7 +514,7 @@ The following GNN layers were used:
 
 ---
 
-# Experiment 12 — CFGNN + BPE-based Node Tokenization
+# Experiment 12 — CFGNN-Attn + BPE-based Node Tokenization
 
 ## Description
 
@@ -572,7 +572,7 @@ Using BPE helps:
 
 ---
 
-# Experiment 13 — CFGNN + BPE + GNN Backbone Comparison
+# Experiment 13 — CFGNN-Attn + BPE + GNN Backbone Comparison
 
 ## Description
 
@@ -602,12 +602,12 @@ All training settings were kept unchanged to ensure fair comparison.
 
 ---
 
-# Experiment 14 — CFGNN + Max Node Sensitivity Analysis
+# Experiment 14 — CFGNN-Attn + Max Node Sensitivity Analysis
 
 ## Description
 
 This experiment investigates the impact of different `max_node`
-configurations on CFGNN performance.
+configurations on CFGNN-Attn performance.
 
 The `max_node` parameter controls the maximum number of CFG nodes
 kept for each sample during preprocessing.
@@ -636,7 +636,7 @@ Tested configurations:
 
 ---
 
-# Experiment 15 — CFGNN + GAT Heads Sensitivity Analysis
+# Experiment 15 — CFGNN-Attn + GAT Heads Sensitivity Analysis
 
 ## Description
 
