@@ -700,3 +700,40 @@ Main changes:
 | Precision | 0.2694 |
 | Recall    | 0.5771 |
 | F1-score  | 0.3673 |
+
+---
+
+# Experiment 17 — CFGNN without Attention Pooling
+
+## Description
+
+This experiment investigates the contribution of the **attention pooling**
+mechanism in the CFGNN architecture.
+
+Instead of learning attention weights for CFG nodes, this version
+replaces the attention module with simple **mean pooling** over node
+representations.
+
+Main changes:
+
+- Removed the attention layer:
+  
+  ```python
+  self.attn = nn.Linear(D, 1)
+- Replaced attention pooling with masked mean pooling.
+- Kept:
+  - BPE-based node representation
+  - Node role embeddings
+  - GAT-based CFG propagation
+  - BiLSTM sequence modeling
+
+---
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Accuracy  | 0.7699 |
+| Precision | 0.3055 |
+| Recall    | 0.5165 |
+| F1-score  | 0.3839 |
