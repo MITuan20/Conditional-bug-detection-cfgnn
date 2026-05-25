@@ -4,7 +4,7 @@ This repository contains the implementation and experimental study for my gradua
 
 ---
 
-## 📌 Research Topic
+## Research Topic
 
 **Vietnamese**  
 Phát hiện lỗi liên quan đến điều kiện bằng mạng nơ-ron đồ thị dựa trên đồ thị luồng điều khiển (CFG).
@@ -14,7 +14,7 @@ Conditional bug detection using CFG-aware Graph Neural Networks for source code 
 
 ---
 
-## 🎯 Motivation
+## Motivation
 
 Conditional statements (e.g., `if`, `else`, `while`, `switch`) play a critical role in program logic and are a common source of subtle bugs.  
 Traditional sequence-based models often fail to capture control-flow semantics, motivating the use of graph-based representations.
@@ -23,48 +23,56 @@ This project explores how **Control Flow Graphs (CFG)** combined with **Graph Ne
 
 ---
 
-## 🧠 Methodology Overview
+## Dataset
 
-The proposed approach consists of:
-
-1. Source code preprocessing and CFG construction  
-2. Node-level feature engineering (e.g., conditional node types)  
-3. CFG-aware Graph Neural Network (CFGNN) for representation learning  
-4. Binary classification (buggy vs. non-buggy methods)  
-5. Evaluation under imbalanced data settings
-
-Baseline models and comparisons with pretrained code models (e.g., CodeT5) are also included.
+- The original dataset from the referenced paper is included in the `data/` directory as compressed `.zip` files.
+- The uploaded dataset is the raw dataset before preprocessing.
+- Due to preprocessing and CFG extraction requirements, additional intermediate CSV files are generated during execution.
+- The original dataset exhibits severe class imbalance between buggy and non-buggy samples.
 
 ---
 
-## 📊 Dataset
-
-- The dataset is **not included** in this repository due to size and license constraints.
-- The original dataset exhibits a severe class imbalance (buggy : non-buggy ≈ 1 : 7).
-- Preprocessing steps and data handling strategies are documented in the `docs/` directory.
-
----
-
-## 🧪 Experiments
-
-Experiments are organized by version and method, including:
-- Baseline implementations
-- Reproduction of original author code under adjusted settings
-- CFGNN-based models with incremental improvements
-
-Each experiment includes configuration details, evaluation metrics, and observations.
-
----
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 conditional-bug-detection-cfgnn/
-├── docs/          # Research notes, methodology, weekly progress
-├── baselines/     # Baseline implementations and results
-├── notebooks/     # Experimental and exploratory notebooks
-├── src/           # Core model and training code
-├── experiments/   # Experiment summaries and results
-├── data/          # Dataset placeholder (no raw data included)
-├── logs/          # Log placeholder (no raw logs included)
+├── baselines/      # Baseline models and comparative results
+├── data/           # Contains raw dataset .zip and processed data splits
+├── docs/           # weekly-logs, proposal, and methodology
+├── experiments/    # Results (baseline models + cfgnn_attn)
+├── notebooks/      # Experimental notebooks (ready for Kaggle execution)
+│   └── cfgnn_attn_experiments.ipynb
+├── spoon/          # Java-based static analysis module for CFG extraction
+└── src/            # Core Python scripts for data pipeline & preparation
+    ├── data_split.py
+    └── prepare.py
+├── .gitignore
+├── README.md
 └── requirements.txt
+```
+
+---
+
+## How to run
+
+
+1. py src/data_split.py
+2. py src/prepare.py train 1
+3. py src/prepare test 1
+4. cd spoon/
+mvn compile
+5. mvn -q -DskipTests '-Dexec.mainClass=fr.inria.controlflow.Main' '-Dexec.args=../data/dataset_train.csv ../data/dataset_train_final.csv' exec:java
+6. mvn -q -DskipTests '-Dexec.mainClass=fr.inria.controlflow.Main' '-Dexec.args=../data/dataset_test.csv ../data/dataset_test_final.csv' exec:java
+7. cd ..
+8. py src/prepare.py train 2
+9. py src/prepare.py train 3
+10. py src/prepare.py test 2
+
+
+## Model Training & Evaluation
+
+Once the pipeline is complete, upload the processed graph data along with the main notebook to Kaggle:
+
+1. Open notebooks/cfgnn_attn_experiments.ipynb on Kaggle.
+2. Enable the Tesla T4 GPU accelerator.
+3. Execute the cells to train the CFGNN-Attn model and review results.
