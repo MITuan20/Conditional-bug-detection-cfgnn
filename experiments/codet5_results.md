@@ -17,10 +17,10 @@
 
 | Metric    | Value |
 |-----------|--------|
-| Accuracy  | 0.7805  |
-| Precision | 0.2824  |
-| Recall    | 0.4906  |
-| F1-score  | 0.3585  |
+| Accuracy  | 0.7964  |
+| Precision | 0.2998  |
+| Recall    | 0.4704  |
+| F1-score  | 0.3662  |
 
 ## Comparison Note
 This baseline is used for comparison with:
