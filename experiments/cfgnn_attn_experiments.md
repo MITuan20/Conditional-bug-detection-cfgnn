@@ -771,3 +771,37 @@ Tested configurations:
 | 50      | 0.7568   | 0.2994    | 0.5613 | 0.3905   |
 
 ---
+
+# Experiment 19 — CFGNN without GAT Propagation
+
+## Description
+
+This experiment investigates the contribution of the **GAT-based CFG
+propagation module** in the CFGNN architecture.
+
+Instead of propagating information through CFG edges using Graph
+Attention Networks (GAT), this version removes the entire graph
+propagation stage and directly feeds node embeddings into the BiLSTM.
+
+Main changes:
+
+- Removed:
+  - Forward GAT propagation
+  - Backward GAT propagation
+- Kept:
+  - BPE-based node representation
+  - Node role embeddings
+  - BiLSTM
+  - Attention pooling
+
+---
+
+## Results
+
+| Metric    | Value |
+|-----------|--------|
+| Precision | 0.2872 |
+| Recall    | 0.5687 |
+| F1-score  | 0.3817 |
+
+---
