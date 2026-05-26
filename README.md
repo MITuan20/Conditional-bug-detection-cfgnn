@@ -131,6 +131,19 @@ mvn -version
 9. `py src/prepare.py train 3`
 10. `py src/prepare.py test 2`
 ```
+``` bash
+1. `py src/data_split.py`
+2. `py src/prepare.py train 1`
+3. `py src/prepare test 1`
+4. `cd spoon/`
+`mvn compile`
+5. `mvn -q -DskipTests '-Dexec.mainClass=fr.inria.controlflow.Main' '-Dexec.args=../data/dataset_train.csv ../data/dataset_train_final.csv' exec:java`
+6. `mvn -q -DskipTests '-Dexec.mainClass=fr.inria.controlflow.Main' '-Dexec.args=../data/dataset_test.csv ../data/dataset_test_final.csv' exec:java`
+7. `cd ..`
+8. `py src/prepare.py train 2`
+9. `py src/prepare.py train 3`
+10. `py src/prepare.py test 2`
+```
 
 ## Model Training & Evaluation
 
@@ -139,6 +152,13 @@ Once the pipeline is complete, upload the processed graph data along with the ma
 1. Open notebooks/cfgnn_attn_experiments.ipynb on Kaggle.
 2. Enable the Tesla T4 GPU accelerator.
 3. Execute the cells to train the CFGNN-Attn model and review results.
+
+## Kaggle Environment
+
+Training experiments were conducted on Kaggle using:
+- Tesla T4 GPU
+- PyTorch (preinstalled in Kaggle)
+- torch-geometric
 
 ## Kaggle Environment
 
