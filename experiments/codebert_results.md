@@ -17,10 +17,10 @@
 
 | Metric    | Value |
 |-----------|--------|
-| Accuracy  | 0.7745  |
-| Precision | 0.2683  |
-| Recall    | 0.4653  |
-| F1-score  | 0.3403  |
+| Accuracy  | 0.7395  |
+| Precision | 0.2482  |
+| Recall    | 0.5344  |
+| F1-score  | 0.3390  |
 
 ## Notes
 This baseline serves as a transformer-based comparison
