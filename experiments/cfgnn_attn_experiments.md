@@ -737,3 +737,37 @@ Main changes:
 | Precision | 0.3055 |
 | Recall    | 0.5165 |
 | F1-score  | 0.3839 |
+
+---
+
+# Experiment 18 — CFGNN-Attn + Max Token Sensitivity Analysis
+
+## Description
+
+This experiment investigates the impact of different `max_token`
+configurations on CFGNN-Attn performance.
+
+The `max_token` parameter controls the maximum number of nodes of token
+kept for each sample during preprocessing.
+
+All other training settings and model configurations were kept unchanged.
+
+Tested configurations:
+
+- `max_token = 10`
+- `max_token = 30`
+- `max_token = 40`
+- `max_token = 50`
+
+---
+
+## Results
+
+| max_token | Accuracy | Precision | Recall | F1-score |
+|----------|----------|-----------|--------|----------|
+| 10      | 0.7470   | 0.2910    | 0.5730 | 0.3860   |
+| 30      | 0.7571   | 0.2990    | 0.5574 | 0.3892   |
+| 40      | 0.7526   | 0.2951    | 0.5631 | 0.3872   |
+| 50      | 0.7568   | 0.2994    | 0.5613 | 0.3905   |
+
+---
