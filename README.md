@@ -39,7 +39,7 @@ This project explores how **Control Flow Graphs (CFG)** combined with **Graph Ne
 conditional-bug-detection-cfgnn/
 ├── baselines/      # Baseline models and comparative results
 ├── data/           # Raw dataset and processed CSV files
-├── docs/           # Weekly logs, proposal, methodology
+├── docs/           # Weekly logs
 ├── experiments/    # Experimental results
 ├── notebooks/      # Kaggle-ready notebooks
 │   └── cfgnn_attn_experiments.ipynb
@@ -131,6 +131,8 @@ mvn -version
 9. `py src/prepare.py train 3`
 10. `py src/prepare.py test 2`
 
+---
+
 ## Model Training & Evaluation
 
 Once the pipeline is complete, upload the processed graph data along with the main notebook to Kaggle:
@@ -138,6 +140,8 @@ Once the pipeline is complete, upload the processed graph data along with the ma
 1. Open notebooks/cfgnn_attn_experiments.ipynb on Kaggle.
 2. Enable the Tesla T4 GPU accelerator.
 3. Execute the cells to train the CFGNN-Attn model and review results.
+
+---
 
 ## Kaggle Environment
 
