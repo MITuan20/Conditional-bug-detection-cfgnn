@@ -25,10 +25,6 @@ logs/
 *.h5
 *.onnx
 
-# Dataset (KHÔNG đẩy data)
-data/*
-!data/README.md
-
 # Experiment artifacts
 runs/
 wandb/
